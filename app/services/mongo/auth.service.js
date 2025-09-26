@@ -9,7 +9,7 @@ export const register = async(req, session) => {
     if(password !== confirmPassword) throw new BadRequestError('Password and Confirm Password do not match');
 
     const salt = await bcrypt.genSalt(12);
-    const hashedPassword = await bcrypt.hash(password || '', salt);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = await User.create([{ username, email, password: hashedPassword }], {session});
     const token = createToken({id: newUser[0]._id});
@@ -26,10 +26,10 @@ export const login = async (req) => {
     const isValidPassword = await bcrypt.compare(password, user.password);
     if(!isValidPassword) throw new BadRequestError('Invalid email or password');
     
-    const token = await createToken({id: user._id});
+    const token = createToken({id: user._id});
     return { token, user };
 }
 
-const logout = async(req) => {
+export const logout = async(req) => {
 
 }

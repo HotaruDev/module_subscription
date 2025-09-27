@@ -8,7 +8,7 @@ import app from '../app.js';
 import createDebug from 'debug';
 import http from 'http';
 import db from '../app/database/index.js'
-import { PORT } from '../app/config.js';
+import { PORT } from '../app/config/env.js';
 
 const debug = createDebug('module-subscription:server');
 /**

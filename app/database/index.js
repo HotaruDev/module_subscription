@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {DB_URL, NODE_ENV} from '../config.js';
+import {DB_URL, NODE_ENV} from '../config/env.js';
 
 if(!DB_URL) throw new Error('Please define the DB_URL environment variable inside .env.<development/production>.local');
 

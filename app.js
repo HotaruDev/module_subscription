@@ -9,6 +9,7 @@ import subscriptionRoutes from './app/api/v1/routes/subscription.routes.js';
 
 // middleware
 import errorMiddleware from './app/middlewares/error.middleware.js';
+import arcjetMiddleware from './app/middlewares/arcjet.middleware.js';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(arcjetMiddleware)
 
 app.get('/', (req, res) => res.status(200).json({status: 'success', message: 'welcome to subscription module API', author: 'Hotaru Jun', name: 'module_subscription', version: '0.0.1', docs_link: '', health_check: 100, is_open: true}));
 app.use('/api/v1/auth', authRouter);

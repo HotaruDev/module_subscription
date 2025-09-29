@@ -1,6 +1,9 @@
 import {Router} from 'express';
-const subscriptionRoutes = Router()
+const subscriptionRouter = Router()
+import {authorize} from '../../../middlewares/auth.middleware.js'
+import { create, usersubs } from '../controllers/subscription.controller.js';
 
-subscriptionRoutes.get('/', (req, res) => res.status(200).send('GET all subscriptions'));
+subscriptionRouter.get('/user/:id', authorize, usersubs);
+subscriptionRouter.post('/', authorize, create);
 
-export default subscriptionRoutes;
+export default subscriptionRouter;

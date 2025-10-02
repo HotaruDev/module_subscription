@@ -7,7 +7,6 @@ import authRouter from './app/api/v1/routes/auth.routes.js';
 import userRouter from './app/api/v1/routes/user.routes.js';
 import subscriptionRouter from './app/api/v1/routes/subscription.routes.js';
 import workflowRouter from './app/api/v1/routes/workflow.routes.js';
-import productRouter from './app/api/v1/routes/product.routes.js';
 
 // middleware
 import errorMiddleware from './app/middlewares/error.middleware.js';
@@ -26,8 +25,8 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/subscriptions', subscriptionRouter);
 app.use('/api/v1/workflows', workflowRouter);
-app.use('/api/v1/products', productRouter);
 
 app.use(errorMiddleware)
+app.use((req, res) => res.status(404).json({success: false, message: 'this route does not exist'}))
 
 export default app;
